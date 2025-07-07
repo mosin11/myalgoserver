@@ -14,13 +14,14 @@ import pandas as pd
 from datetime import datetime, timezone, timedelta
 import numpy as np
 import time
+import eventlet
 
 # python server.py
 app = Flask(__name__)
 CORS(app)
 load_dotenv()
 socketio = SocketIO(app, cors_allowed_origins="*")
-
+eventlet.monkey_patch()
 
 clients = {}
 dfs = []
@@ -334,4 +335,4 @@ def subscribe_tokens():
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=5000)
+    socketio.run(app, host="0.0.0.0", port=10000)
