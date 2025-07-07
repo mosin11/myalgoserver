@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: kotak-api-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: PYTHONPATH=$PYTHONPATH:./kotak-neo-api python serverapp.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+      -
